@@ -35,16 +35,23 @@ const tasks = [
 
 (function (arrOfTasks) {
     // ! convert array to object
-    const objectOfTasks = arrOfTasks.reduce((acc, task) => {
+    let objectOfTasks = arrOfTasks.reduce((acc, task) => {
         acc[task._id] = task
         return acc
     }, {})
 
     // * UI elements
-    const pageContainer = document.querySelector('.container')
+    const pageContainer = document.querySelector('.flex-container')
+    const form = document.forms['form']
+    const inputTitle = form.elements['title']
+    const inputBody = form.elements['body']
 
     // ! calling functions
     renderTasks(objectOfTasks)
+    form.addEventListener('submit', formSubmitActionHendler, {
+        // once: false,
+        // capture: false,
+    })
 
     // * function wich render UI elements 
     function renderTasks(objOfTasks) {
@@ -69,6 +76,7 @@ const tasks = [
         // * perent element
         const div = document.createElement('div')
         div.classList.add('tasks-section')
+        div.setAttribute('data-task-id', _id)
 
         const taskTitle = document.createElement('span')
         taskTitle.classList.add('tasks-section-span')
@@ -91,5 +99,72 @@ const tasks = [
 
         return div
     }
+
+    // * function wich generate id for task
+    function createTaskId() {
+        let id = '';
+        id += Math.random().toString(36).slice(2);
+        return id
+    }
+
+    function formSubmitActionHendler(event) {
+        event.preventDefault()
+        const titleValue = inputTitle.value
+        const bodyValue = inputBody.value
+
+        const task = createNewTask(titleValue, bodyValue)
+        const newTaskSection = taskSectionTemplate(task)
+        pageContainer.insertAdjacentElement('afterbegin', newTaskSection)
+        form.reset()
+    }
+
+    function createNewTask(title, body,) {
+        const newTaskObject = {
+            title,
+            body,
+            completed: false,
+            _id: createTaskId(),
+        }
+
+        objectOfTasks[newTaskObject._id] = newTaskObject
+
+        return { ...newTaskObject }
+    }
+
+    // ! delete task
+    pageContainer.addEventListener('click', onDeleteHeandler, {
+        once: false,
+        capture: false,
+        passive: false,
+    })
+
+    function deleteTask(id) {
+        const taskTitle = objectOfTasks[id].title
+        const isConfirm = confirm(`Are you sure you want to delete the task: ${taskTitle}`)
+        if (confirm === false) {
+            return confirm
+        }
+
+        delete objectOfTasks[id]
+        return isConfirm
+    }
+
+    function deleteElementFromHtml(confirmed, element) {
+        if (!confirmed) {
+            return
+        }
+        element.remove()
+    }
+
+    function onDeleteHeandler({ target }) {
+        if (target.classList.contains('tasks-section-btn')) {
+            const perentElement = target.closest('[data-task-id]')
+            const perentElementId = perentElement.dataset.taskId
+            const confirmed = deleteTask(perentElementId)
+            deleteElementFromHtml(confirmed, perentElement)
+        }
+    }
+
+
 
 })(tasks)
