@@ -129,8 +129,8 @@ body {
   font-size: 1rem;
 
   /* transition */
-  transition-duration: 0.4s, 0.4s;
-  transition-timing-function: linear;
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: ease-in;
 }
 /* btn hover style */
 .btn:hover {
@@ -138,8 +138,8 @@ body {
   color: white;
   /* transition */
   transition-property: background, color;
-  transition-duration: 0.5s, 0.5s;
-  transition-timing-function: linear;
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: ease-in;
 }
 /* tasks-list-section */
 .tasks-section {
@@ -166,8 +166,8 @@ body {
   height: 40px;
 
   /* border & bg style */
-  background: #f4c038;
-  outline: 1px solid #f4c038;
+  background: #ED422B;
+  outline: 1px solid #ED422B;
   border-radius: 48px;
   border: none;
 
@@ -176,19 +176,19 @@ body {
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
+  color: #E0E0E0;
 
   /* transition */
-  transition-duration: 0.4s, 0.4s;
-  transition-timing-function: linear;
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: ease-in;
 }
-/* tasks section button hover style */
+/*  tasks section button hover style */
 .tasks-section-btn:hover {
   background: #20222a;
-  color: white;
   /* transition */
-  transition-property: background, color;
-  transition-duration: 0.5s, 0.5s;
-  transition-timing-function: linear;
+  transition-property: background;
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: ease-in;
 }
 
 /* ! Media */
