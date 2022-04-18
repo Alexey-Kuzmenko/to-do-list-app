@@ -103,6 +103,9 @@ body {
   width: 49%;
   height: 48px;
   display: block;
+  /* margin: 10px 0; */
+  /* test */
+  margin: 10px auto;
   margin: 10px 0;
   padding: 16px 24px;
   background-color: var(--main-color);

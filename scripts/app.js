@@ -41,7 +41,7 @@ const tasks = [
     }, {})
 
     // * UI elements
-    const pageContainer = document.querySelector('.flex-container')
+    const pageContainer = document.querySelectorAll('.flex-container')[1]
     const form = document.forms['form']
     const inputTitle = form.elements['title']
     const inputBody = form.elements['body']
