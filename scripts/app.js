@@ -34,6 +34,16 @@ const tasks = [
 ];
 
 (function (arrOfTasks) {
+
+    // // ! check default array of tasks length
+    // function checkArrOfTasksLength(arrOfTasks) {
+    //     if (arrOfTasks.length === 0) {
+    //         alertTitleTemplate()
+    //     }
+    //     return
+    // }
+
+
     // ! convert array to object
     let objectOfTasks = arrOfTasks.reduce((acc, task) => {
         acc[task._id] = task
@@ -47,11 +57,13 @@ const tasks = [
     const inputBody = form.elements['body']
 
     // ! calling functions
+    // checkArrOfTasksLength(arrOfTasks)
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler, {
         // once: false,
         // capture: false,
     })
+    // checkObjectofTasks(objectOfTasks)
 
     // * function wich render UI elements 
     function renderTasks(objOfTasks) {
@@ -86,11 +98,15 @@ const tasks = [
         taskButton.classList.add('tasks-section-btn')
         taskButton.textContent = 'Delete'
 
+        const completeTaskBtn = document.createElement('button')
+        completeTaskBtn.classList.add('tasks-section-complete-btn')
+        completeTaskBtn.textContent = 'Complete'
+
         const taskBody = document.createElement('p')
         taskBody.classList.add('tasks-section-p')
         taskBody.textContent = body
 
-        elementsArray.push(taskTitle, taskButton, taskBody)
+        elementsArray.push(taskTitle, taskButton, completeTaskBtn, taskBody)
         elementsArray.forEach(el => {
             div.appendChild(el)
             // ! testing
@@ -98,6 +114,14 @@ const tasks = [
         })
 
         return div
+    }
+
+    // * alert title template
+    function alertTitleTemplate() {
+        const errorTitle = document.createElement('h1')
+        errorTitle.textContent = `You haven't current tasks`
+        errorTitle.className = 'error-title'
+        pageContainer.appendChild(errorTitle)
     }
 
     // * function wich generate id for task
@@ -146,6 +170,11 @@ const tasks = [
         }
 
         delete objectOfTasks[id]
+        arrOfTasks.pop()
+        // ! test
+        // console.log(Object.values(objectOfTasks).length);
+        // console.log(pageContainer.children.length);
+        console.log(arrOfTasks.length);
         return isConfirm
     }
 
@@ -165,6 +194,36 @@ const tasks = [
         }
     }
 
+    // * complete task 
+    pageContainer.addEventListener('click', onCompleteHeandler)
+
+
+
+    function onCompleteHeandler({ target }) {
+        if (target.classList.contains('tasks-section-complete-btn')) {
+            const perentElement = target.closest('[data-task-id]')
+            perentElement.classList.add('completed')
+        }
+    }
+
+
+    // function checkObjectofTasks(objectOfTasks) {
+    //     if (Object.keys(objectOfTasks).length === 0) {
+    //         alertTitleTemplate()
+    //         // console.log(`all tasks are deleted`);
+    //     }
+
+    //     return
+
+    // }
+
+    // // ! check default array of tasks length
+    // function checkArrOfTasksLength(arrOfTasks) {
+    //     if (arrOfTasks.length === 0) {
+    //         alertTitleTemplate()
+    //     }
+    //     return
+    // }
 
 
 })(tasks)
