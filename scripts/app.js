@@ -1,42 +1,44 @@
 
 // * array of tasks
 const tasks = [
-    // {
-    //     _id: '5d2ca9e2e03d40b326596aa7',
-    //     completed: true,
-    //     body:
-    //         'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-    //     title: 'Eu ea incididunt sunt consectetur fugiat non.',
-    // },
-    // {
-    //     _id: '5d2ca9e29c8a94095c1288e0',
-    //     completed: false,
-    //     body:
-    //         'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-    //     title:
-    //         'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-    // },
-    // {
-    //     _id: '5d2ca9e2e03d40b3232496aa7',
-    //     completed: true,
-    //     body:
-    //         'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-    //     title: 'Eu ea incididunt sunt consectetur fugiat non.',
-    // },
-    // {
-    //     _id: '5d2ca9e29c8a94095564788e0',
-    //     completed: false,
-    //     body:
-    //         'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-    //     title:
-    //         'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-    // },
+    {
+        _id: '5d2ca9e2e03d40b326596aa7',
+        completed: true,
+        body:
+            'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+        title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    },
+    {
+        _id: '5d2ca9e29c8a94095c1288e0',
+        completed: false,
+        body:
+            'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+        title:
+            'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    },
+    {
+        _id: '5d2ca9e2e03d40b3232496aa7',
+        completed: true,
+        body:
+            'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+        title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    },
+    {
+        _id: '5d2ca9e29c8a94095564788e0',
+        completed: false,
+        body:
+            'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+        title:
+            'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    },
 ];
 
 (function (arrOfTasks) {
 
+    const copyArrOfTasks = [...arrOfTasks]
+
     // ! convert array to object
-    let objectOfTasks = arrOfTasks.reduce((acc, task) => {
+    let objectOfTasks = copyArrOfTasks.reduce((acc, task) => {
         acc[task._id] = task
         return acc
     }, {})
@@ -53,11 +55,11 @@ const tasks = [
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler)
     pageContainer.addEventListener('click', onCompleteHeandler)
-    // checkArrOfTasksLength(arrOfTasks)
-    // checkObjectofTasks(objectOfTasks)
+    checkObjectofTasks(objectOfTasks)
 
     // * function wich render UI elements 
     function renderTasks(objOfTasks) {
+
         if (!objOfTasks) {
             console.error('refer list of tasks');
             return
@@ -98,7 +100,7 @@ const tasks = [
         taskBody.classList.add('tasks-section-p')
         taskBody.textContent = body
 
-        elementsArray.push(taskTitle, taskButton, completeTaskBtn, taskBody)
+        elementsArray.push(taskTitle, taskBody, taskButton, completeTaskBtn,)
         elementsArray.forEach(el => {
             div.appendChild(el)
         })
@@ -131,8 +133,8 @@ const tasks = [
         const task = createNewTask(titleValue, bodyValue)
         const newTaskSection = taskSectionTemplate(task)
         pageContainer.insertAdjacentElement('afterbegin', newTaskSection)
-        // // ! test
-        // arrOfTasks.push(task)
+        // ! test
+        copyArrOfTasks.push(task)
         form.reset()
     }
 
@@ -166,10 +168,10 @@ const tasks = [
 
         delete objectOfTasks[id]
         // ! test
-        // arrOfTasks.shift()
-        // console.log(Object.values(objectOfTasks).length);
-        // console.log(pageContainer.children.length);
-        console.log(arrOfTasks.length);
+        copyArrOfTasks.pop()
+        console.log(Object.keys(objectOfTasks).length);
+        // console.log(copyArrOfTasks.length);
+
         return isConfirm
     }
 
@@ -199,20 +201,23 @@ const tasks = [
     }
 
 
-    // function checkObjectofTasks(objectOfTasks) {
-    //     if (Object.keys(objectOfTasks).length === 0) {
+    function checkObjectofTasks(objectOfTasks) {
+        if (Object.keys(objectOfTasks).length === 0) {
+            const title = alertTitleTemplate()
+            pageContainer.appendChild(title)
+            console.log(`object is empty`);
+        }
+    }
+
+    // ! check default array of tasks length
+    // function checkArrOfTasksLength(array) {
+    //     if (array.length === 0) {
     //         const title = alertTitleTemplate()
     //         pageContainer.appendChild(title)
-    //         console.log(`object is empty`);
     //     }
     // }
 
-    // // ! check default array of tasks length
-    // function checkArrOfTasksLength(arrOfTasks) {
-    //     if (arrOfTasks.length === 0) {
-    //         alertTitleTemplate()
-    //     }
-    // }
+    console.log(Object.keys(objectOfTasks).length);
 
 
 })(tasks)
