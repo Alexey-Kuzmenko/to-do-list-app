@@ -1,48 +1,39 @@
 
 // * array of tasks
 const tasks = [
-    {
-        _id: '5d2ca9e2e03d40b326596aa7',
-        completed: true,
-        body:
-            'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-        title: 'Eu ea incididunt sunt consectetur fugiat non.',
-    },
-    {
-        _id: '5d2ca9e29c8a94095c1288e0',
-        completed: false,
-        body:
-            'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-        title:
-            'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-    },
-    {
-        _id: '5d2ca9e2e03d40b3232496aa7',
-        completed: true,
-        body:
-            'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-        title: 'Eu ea incididunt sunt consectetur fugiat non.',
-    },
-    {
-        _id: '5d2ca9e29c8a94095564788e0',
-        completed: false,
-        body:
-            'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-        title:
-            'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-    },
+    // {
+    //     _id: '5d2ca9e2e03d40b326596aa7',
+    //     completed: true,
+    //     body:
+    //         'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+    //     title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    // },
+    // {
+    //     _id: '5d2ca9e29c8a94095c1288e0',
+    //     completed: false,
+    //     body:
+    //         'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+    //     title:
+    //         'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    // },
+    // {
+    //     _id: '5d2ca9e2e03d40b3232496aa7',
+    //     completed: true,
+    //     body:
+    //         'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+    //     title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    // },
+    // {
+    //     _id: '5d2ca9e29c8a94095564788e0',
+    //     completed: false,
+    //     body:
+    //         'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+    //     title:
+    //         'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    // },
 ];
 
 (function (arrOfTasks) {
-
-    // // ! check default array of tasks length
-    // function checkArrOfTasksLength(arrOfTasks) {
-    //     if (arrOfTasks.length === 0) {
-    //         alertTitleTemplate()
-    //     }
-    //     return
-    // }
-
 
     // ! convert array to object
     let objectOfTasks = arrOfTasks.reduce((acc, task) => {
@@ -50,19 +41,19 @@ const tasks = [
         return acc
     }, {})
 
+
     // * UI elements
     const pageContainer = document.querySelectorAll('.flex-container')[1]
     const form = document.forms['form']
     const inputTitle = form.elements['title']
     const inputBody = form.elements['body']
 
+
     // ! calling functions
-    // checkArrOfTasksLength(arrOfTasks)
     renderTasks(objectOfTasks)
-    form.addEventListener('submit', formSubmitActionHendler, {
-        // once: false,
-        // capture: false,
-    })
+    form.addEventListener('submit', formSubmitActionHendler)
+    pageContainer.addEventListener('click', onCompleteHeandler)
+    // checkArrOfTasksLength(arrOfTasks)
     // checkObjectofTasks(objectOfTasks)
 
     // * function wich render UI elements 
@@ -80,6 +71,7 @@ const tasks = [
         })
         pageContainer.appendChild(fragment)
     }
+
 
     // * task section template
     function taskSectionTemplate({ _id, title, body } = {}) {
@@ -109,20 +101,20 @@ const tasks = [
         elementsArray.push(taskTitle, taskButton, completeTaskBtn, taskBody)
         elementsArray.forEach(el => {
             div.appendChild(el)
-            // ! testing
-            // console.log(div);
         })
 
         return div
     }
+
 
     // * alert title template
     function alertTitleTemplate() {
         const errorTitle = document.createElement('h1')
         errorTitle.textContent = `You haven't current tasks`
         errorTitle.className = 'error-title'
-        pageContainer.appendChild(errorTitle)
+        return errorTitle
     }
+
 
     // * function wich generate id for task
     function createTaskId() {
@@ -139,10 +131,13 @@ const tasks = [
         const task = createNewTask(titleValue, bodyValue)
         const newTaskSection = taskSectionTemplate(task)
         pageContainer.insertAdjacentElement('afterbegin', newTaskSection)
+        // // ! test
+        // arrOfTasks.push(task)
         form.reset()
     }
 
-    function createNewTask(title, body,) {
+
+    function createNewTask(title, body) {
         const newTaskObject = {
             title,
             body,
@@ -151,9 +146,9 @@ const tasks = [
         }
 
         objectOfTasks[newTaskObject._id] = newTaskObject
-
         return { ...newTaskObject }
     }
+
 
     // ! delete task
     pageContainer.addEventListener('click', onDeleteHeandler, {
@@ -170,8 +165,8 @@ const tasks = [
         }
 
         delete objectOfTasks[id]
-        arrOfTasks.pop()
         // ! test
+        // arrOfTasks.shift()
         // console.log(Object.values(objectOfTasks).length);
         // console.log(pageContainer.children.length);
         console.log(arrOfTasks.length);
@@ -194,11 +189,8 @@ const tasks = [
         }
     }
 
+
     // * complete task 
-    pageContainer.addEventListener('click', onCompleteHeandler)
-
-
-
     function onCompleteHeandler({ target }) {
         if (target.classList.contains('tasks-section-complete-btn')) {
             const perentElement = target.closest('[data-task-id]')
@@ -209,12 +201,10 @@ const tasks = [
 
     // function checkObjectofTasks(objectOfTasks) {
     //     if (Object.keys(objectOfTasks).length === 0) {
-    //         alertTitleTemplate()
-    //         // console.log(`all tasks are deleted`);
+    //         const title = alertTitleTemplate()
+    //         pageContainer.appendChild(title)
+    //         console.log(`object is empty`);
     //     }
-
-    //     return
-
     // }
 
     // // ! check default array of tasks length
@@ -222,7 +212,6 @@ const tasks = [
     //     if (arrOfTasks.length === 0) {
     //         alertTitleTemplate()
     //     }
-    //     return
     // }
 
 
