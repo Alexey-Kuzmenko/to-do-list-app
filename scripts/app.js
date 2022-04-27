@@ -55,7 +55,6 @@ const tasks = [
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler)
     pageContainer.addEventListener('click', onCompleteHeandler)
-    checkObjectofTasks(objectOfTasks)
 
     // * function wich render UI elements 
     function renderTasks(objOfTasks) {
@@ -168,7 +167,8 @@ const tasks = [
 
         delete objectOfTasks[id]
         // ! test
-        copyArrOfTasks.pop()
+        const i = copyArrOfTasks.indexOf(arrOfTasks[id])
+        copyArrOfTasks.splice(i, 0)
         console.log(Object.keys(objectOfTasks).length);
         // console.log(copyArrOfTasks.length);
 
@@ -196,28 +196,15 @@ const tasks = [
     function onCompleteHeandler({ target }) {
         if (target.classList.contains('tasks-section-complete-btn')) {
             const perentElement = target.closest('[data-task-id]')
+            const perentElementId = perentElement.dataset.taskId
             perentElement.classList.add('completed')
+            const object = objectOfTasks[perentElementId]
+            object.completed = true
         }
     }
 
 
-    function checkObjectofTasks(objectOfTasks) {
-        if (Object.keys(objectOfTasks).length === 0) {
-            const title = alertTitleTemplate()
-            pageContainer.appendChild(title)
-            console.log(`object is empty`);
-        }
-    }
-
-    // ! check default array of tasks length
-    // function checkArrOfTasksLength(array) {
-    //     if (array.length === 0) {
-    //         const title = alertTitleTemplate()
-    //         pageContainer.appendChild(title)
-    //     }
-    // }
-
-    console.log(Object.keys(objectOfTasks).length);
+    console.log(copyArrOfTasks[1]);
 
 
 })(tasks)

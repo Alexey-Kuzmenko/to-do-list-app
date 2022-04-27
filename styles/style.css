@@ -31,7 +31,7 @@ a {
 }
 
 p {
-  margin: 0 0 10px;
+  margin: 0 0 20px;
 }
 
 body {
@@ -177,11 +177,6 @@ body {
   /* border */
   border: 1px solid var(--yellow);
   border-radius: 48px;
-  /* flex */
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-flow: row wrap; */
 
   /* font style */
   color: white;
@@ -306,7 +301,7 @@ body {
   .tasks-section {
     /* flex */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-flow: column wrap;
   }
