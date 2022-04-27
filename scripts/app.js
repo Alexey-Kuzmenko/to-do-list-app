@@ -204,7 +204,7 @@ const tasks = [
     }
 
 
-    console.log(copyArrOfTasks[1]);
+    console.log(copyArrOfTasks);
 
 
 })(tasks)
