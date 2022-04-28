@@ -10,6 +10,8 @@
   --yellow: #f4c038;
   --red: #ed422b;
   --green: #3cbf27;
+  --blue: #2da0e0;
+  --orange: #f47523;
 }
 
 html {
@@ -167,11 +169,61 @@ body {
   transition-timing-function: ease-in;
 }
 
+/* * Navigation Buttons */
+.nav-btn-container {
+  /* size */
+  width: 80%;
+  min-height: 10vh;
+  padding: 20px 30px;
+  /* position */
+  position: relative;
+  /* flex */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-flow: row wrap;
+
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  min-width: 97px;
+  height: 40px;
+
+  /* border & bg style */
+  border-radius: 48px;
+  border: none;
+
+  /* font style  */
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #e0e0e0;
+
+  /* transition */
+  transition-duration: 0.3s, 0.3s;
+  transition-timing-function: ease-in;
+}
+
+.nav-btn:first-child {
+  position: relative;
+  margin-right: auto;
+  background-color: var(--blue);
+  outline: 1px solid var(--blue);
+}
+.nav-btn:last-child {
+  position: relative;
+  margin-left: auto;
+  background-color: var(--orange);
+  outline: 1px solid var(--orange);
+}
+
 /* * Tasks-list-section */
 .tasks-section {
   /* size */
   width: 80%;
-  min-height: 30vh;
+  min-height: 20vh;
   margin-bottom: 40px;
   padding: 20px 30px;
   /* border */
@@ -226,9 +278,10 @@ body {
   transition-timing-function: ease-in;
 }
 
-/*  tasks section button hover style */
+/* * buttons hover style */
 .tasks-section-btn:hover,
-.tasks-section-complete-btn:hover {
+.tasks-section-complete-btn:hover,
+.nav-btn:hover {
   background: var(--main-color);
   /* transition */
   transition-property: background;
