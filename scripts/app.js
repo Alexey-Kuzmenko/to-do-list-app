@@ -49,12 +49,14 @@ const tasks = [
     const form = document.forms['form']
     const inputTitle = form.elements['title']
     const inputBody = form.elements['body']
+    const navContainer = document.querySelector('.nav-btn-container')
 
 
     // ! calling functions
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler)
     pageContainer.addEventListener('click', onCompleteHeandler)
+    navContainer.addEventListener('click', onNavBtnClickHeandler)
 
     // * function wich render UI elements 
     function renderTasks(objOfTasks) {
@@ -109,12 +111,12 @@ const tasks = [
 
 
     // * alert title template
-    function alertTitleTemplate() {
-        const errorTitle = document.createElement('h1')
-        errorTitle.textContent = `You haven't current tasks`
-        errorTitle.className = 'error-title'
-        return errorTitle
-    }
+    // function alertTitleTemplate() {
+    //     const errorTitle = document.createElement('h1')
+    //     errorTitle.textContent = `You haven't current tasks`
+    //     errorTitle.className = 'error-title'
+    //     return errorTitle
+    // }
 
 
     // * function wich generate id for task
@@ -132,9 +134,10 @@ const tasks = [
         const task = createNewTask(titleValue, bodyValue)
         const newTaskSection = taskSectionTemplate(task)
         pageContainer.insertAdjacentElement('afterbegin', newTaskSection)
-        // ! test
-        copyArrOfTasks.push(task)
         form.reset()
+
+        // ! test
+        // copyArrOfTasks.push(task)
     }
 
 
@@ -167,9 +170,9 @@ const tasks = [
 
         delete objectOfTasks[id]
         // ! test
-        const i = copyArrOfTasks.indexOf(arrOfTasks[id])
-        copyArrOfTasks.splice(i, 0)
-        console.log(Object.keys(objectOfTasks).length);
+        // const i = copyArrOfTasks.indexOf(arrOfTasks[id])
+        // copyArrOfTasks.splice(i, 0)
+        // console.log(Object.keys(objectOfTasks).length);
         // console.log(copyArrOfTasks.length);
 
         return isConfirm
@@ -203,8 +206,28 @@ const tasks = [
         }
     }
 
+    // * render unfinished tasks
 
-    console.log(copyArrOfTasks);
+    function onNavBtnClickHeandler({ target }) {
+        const taskSections = pageContainer.children
+
+        if (target.classList.contains('all-tasks')) {
+            Array.from(taskSections).forEach(section => {
+                if (section.classList.contains('completed')) {
+                    section.style.display = 'block'
+                }
+            })
+        } else if (target.classList.contains('unfinished-tasks')) {
+            Array.from(taskSections).forEach(section => {
+                if (section.classList.contains('completed')) {
+                    section.style.display = 'none'
+                }
+            })
+        }
+    }
+
+    // !testing
+    // console.log(copyArrOfTasks);
 
 
 })(tasks)
