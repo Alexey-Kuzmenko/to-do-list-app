@@ -1,4 +1,3 @@
-
 // * array of tasks
 const tasks = [
     {
@@ -54,6 +53,7 @@ const tasks = [
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler)
     pageContainer.addEventListener('click', onCompleteHeandler)
+    pageContainer.addEventListener('click', onRestoreHeandler)
     navContainer.addEventListener('click', onNavBtnClickHeandler)
 
     // * function wich render UI elements 
@@ -95,11 +95,15 @@ const tasks = [
         completeTaskBtn.classList.add('tasks-section-complete-btn')
         completeTaskBtn.textContent = 'Complete'
 
+        const restoreTaskBtn = document.createElement('button')
+        restoreTaskBtn.classList.add('tasks-section-restore-btn')
+        restoreTaskBtn.textContent = 'Restore'
+
         const taskBody = document.createElement('p')
         taskBody.classList.add('tasks-section-p')
         taskBody.textContent = body
 
-        elementsArray.push(taskTitle, taskBody, taskButton, completeTaskBtn,)
+        elementsArray.push(taskTitle, taskBody, taskButton, completeTaskBtn, restoreTaskBtn)
         elementsArray.forEach(el => {
             div.appendChild(el)
         })
@@ -189,6 +193,20 @@ const tasks = [
             perentElement.classList.add('completed')
             const object = objectOfTasks[perentElementId]
             object.completed = true
+            const restoreBtn = perentElement.lastElementChild
+            restoreBtn.style = 'display:inline-block'
+        }
+    }
+
+    // * Restore task 
+    function onRestoreHeandler({ target }) {
+        if (target.classList.contains('tasks-section-restore-btn')) {
+            const perentElement = target.closest('[data-task-id]')
+            const perentElementId = perentElement.dataset.taskId
+            perentElement.classList.remove('completed')
+            const object = objectOfTasks[perentElementId]
+            object.completed = false
+            target.style = 'display:none'
         }
     }
 
