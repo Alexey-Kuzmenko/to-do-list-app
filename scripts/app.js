@@ -200,47 +200,28 @@ const tasks = [
         return Object.values(objectOfTasks).filter(task => task.completed === true)
     }
 
-    // ! test function call 
-    // console.log(sortTasks(objectOfTasks, false));
-
     // * render unfinished tasks
-
     function onNavBtnClickHeandler({ target }) {
+        const arrOfTaskSections = [...pageContainer.children]
 
         if (target.classList.contains('unfinished-tasks')) {
-            const arrOfTaskSections = [...pageContainer.children]
             const arrOfCompletedTasks = sortTasks(objectOfTasks, true)
 
             arrOfCompletedTasks.map(task => task._id)
                 .forEach(ObjtaskId => {
                     const section = arrOfTaskSections.find(section => section.dataset.taskId === ObjtaskId)
-                    section.remove()
+                    section.style = 'display:none'
                 }
                 )
+        } else if (target.classList.contains('all-tasks')) {
+            arrOfTaskSections.forEach(section => {
+                if (section.style = 'display:none') {
+                    section.style = 'display:block'
+                    section.style = 'order:1'
+                }
+            })
+
         }
     }
-
-    // function onNavBtnClickHeandler({ target }) {
-    //     const taskSections = pageContainer.children
-
-    //     if (target.classList.contains('all-tasks')) {
-    //         Array.from(taskSections).forEach(section => {
-    //             if (section.classList.contains('completed')) {
-    //                 section.style.display = 'block'
-    //             }
-    //         })
-    //     } else if (target.classList.contains('unfinished-tasks')) {
-    //         Array.from(taskSections).forEach(section => {
-    //             if (section.classList.contains('completed')) {
-    //                 section.style.display = 'none'
-    //             }
-    //         })
-    //     }
-    // }
-
-
-    // !testing
-    console.log(pageContainer.children);
-
 
 })(tasks)
