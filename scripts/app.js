@@ -3,7 +3,7 @@
 const tasks = [
     {
         _id: '5d2ca9e2e03d40b326596aa7',
-        completed: true,
+        completed: false,
         body:
             'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
         title: 'Eu ea incididunt sunt consectetur fugiat non.',
@@ -18,7 +18,7 @@ const tasks = [
     },
     {
         _id: '5d2ca9e2e03d40b3232496aa7',
-        completed: true,
+        completed: false,
         body:
             'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
         title: 'Eu ea incididunt sunt consectetur fugiat non.',
@@ -43,14 +43,12 @@ const tasks = [
         return acc
     }, {})
 
-
     // * UI elements
     const pageContainer = document.querySelectorAll('.flex-container')[1]
     const form = document.forms['form']
     const inputTitle = form.elements['title']
     const inputBody = form.elements['body']
     const navContainer = document.querySelector('.nav-btn-container')
-
 
     // ! calling functions
     renderTasks(objectOfTasks)
@@ -72,9 +70,9 @@ const tasks = [
             const taskSection = taskSectionTemplate(task)
             fragment.appendChild(taskSection)
         })
+
         pageContainer.appendChild(fragment)
     }
-
 
     // * task section template
     function taskSectionTemplate({ _id, title, body } = {}) {
@@ -109,7 +107,6 @@ const tasks = [
         return div
     }
 
-
     // * alert title template
     // function alertTitleTemplate() {
     //     const errorTitle = document.createElement('h1')
@@ -126,6 +123,7 @@ const tasks = [
         return id
     }
 
+    // * create new task 
     function formSubmitActionHendler(event) {
         event.preventDefault()
         const titleValue = inputTitle.value
@@ -135,11 +133,7 @@ const tasks = [
         const newTaskSection = taskSectionTemplate(task)
         pageContainer.insertAdjacentElement('afterbegin', newTaskSection)
         form.reset()
-
-        // ! test
-        // copyArrOfTasks.push(task)
     }
-
 
     function createNewTask(title, body) {
         const newTaskObject = {
@@ -153,7 +147,6 @@ const tasks = [
         return { ...newTaskObject }
     }
 
-
     // ! delete task
     pageContainer.addEventListener('click', onDeleteHeandler, {
         once: false,
@@ -164,17 +157,11 @@ const tasks = [
     function deleteTask(id) {
         const taskTitle = objectOfTasks[id].title
         const isConfirm = confirm(`Are you sure you want to delete the task: ${taskTitle}`)
-        if (confirm === false) {
-            return confirm
+        if (isConfirm === false) {
+            return isConfirm
         }
 
         delete objectOfTasks[id]
-        // ! test
-        // const i = copyArrOfTasks.indexOf(arrOfTasks[id])
-        // copyArrOfTasks.splice(i, 0)
-        // console.log(Object.keys(objectOfTasks).length);
-        // console.log(copyArrOfTasks.length);
-
         return isConfirm
     }
 
@@ -194,7 +181,6 @@ const tasks = [
         }
     }
 
-
     // * complete task 
     function onCompleteHeandler({ target }) {
         if (target.classList.contains('tasks-section-complete-btn')) {
@@ -206,28 +192,55 @@ const tasks = [
         }
     }
 
+    // ! test, sort tasks 
+    function sortTasks(objectOfTasks, completed) {
+        if (!completed) {
+            return Object.values(objectOfTasks).filter(task => task.completed === false)
+        }
+        return Object.values(objectOfTasks).filter(task => task.completed === true)
+    }
+
+    // ! test function call 
+    // console.log(sortTasks(objectOfTasks, false));
+
     // * render unfinished tasks
 
     function onNavBtnClickHeandler({ target }) {
-        const taskSections = pageContainer.children
 
-        if (target.classList.contains('all-tasks')) {
-            Array.from(taskSections).forEach(section => {
-                if (section.classList.contains('completed')) {
-                    section.style.display = 'block'
+        if (target.classList.contains('unfinished-tasks')) {
+            const arrOfTaskSections = [...pageContainer.children]
+            const arrOfCompletedTasks = sortTasks(objectOfTasks, true)
+
+            arrOfCompletedTasks.map(task => task._id)
+                .forEach(ObjtaskId => {
+                    const section = arrOfTaskSections.find(section => section.dataset.taskId === ObjtaskId)
+                    section.remove()
                 }
-            })
-        } else if (target.classList.contains('unfinished-tasks')) {
-            Array.from(taskSections).forEach(section => {
-                if (section.classList.contains('completed')) {
-                    section.style.display = 'none'
-                }
-            })
+                )
         }
     }
 
+    // function onNavBtnClickHeandler({ target }) {
+    //     const taskSections = pageContainer.children
+
+    //     if (target.classList.contains('all-tasks')) {
+    //         Array.from(taskSections).forEach(section => {
+    //             if (section.classList.contains('completed')) {
+    //                 section.style.display = 'block'
+    //             }
+    //         })
+    //     } else if (target.classList.contains('unfinished-tasks')) {
+    //         Array.from(taskSections).forEach(section => {
+    //             if (section.classList.contains('completed')) {
+    //                 section.style.display = 'none'
+    //             }
+    //         })
+    //     }
+    // }
+
+
     // !testing
-    // console.log(copyArrOfTasks);
+    console.log(pageContainer.children);
 
 
 })(tasks)
