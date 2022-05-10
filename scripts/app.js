@@ -139,7 +139,7 @@ const tasks = [
         return { ...newTaskObject }
     }
 
-    // ! delete task
+    // * delete task
     pageContainer.addEventListener('click', onDeleteHeandler, {
         once: false,
         capture: false,
