@@ -33,11 +33,8 @@ const tasks = [
 ];
 
 (function (arrOfTasks) {
-
-    const copyArrOfTasks = [...arrOfTasks]
-
     // ! convert array to object
-    let objectOfTasks = copyArrOfTasks.reduce((acc, task) => {
+    let objectOfTasks = arrOfTasks.reduce((acc, task) => {
         acc[task._id] = task
         return acc
     }, {})
@@ -78,7 +75,7 @@ const tasks = [
     function taskSectionTemplate({ _id, title, body } = {}) {
         let elementsArray = []
 
-        // * perent element
+        // ! perent element
         const div = document.createElement('div')
         div.classList.add('tasks-section')
         div.setAttribute('data-task-id', _id)
@@ -111,16 +108,7 @@ const tasks = [
         return div
     }
 
-    // * alert title template
-    // function alertTitleTemplate() {
-    //     const errorTitle = document.createElement('h1')
-    //     errorTitle.textContent = `You haven't current tasks`
-    //     errorTitle.className = 'error-title'
-    //     return errorTitle
-    // }
-
-
-    // * function wich generate id for task
+    // * generate task id
     function createTaskId() {
         let id = '';
         id += Math.random().toString(36).slice(2);
@@ -198,7 +186,7 @@ const tasks = [
         }
     }
 
-    // * Restore task 
+    // * cestore task 
     function onRestoreHeandler({ target }) {
         if (target.classList.contains('tasks-section-restore-btn')) {
             const perentElement = target.closest('[data-task-id]')
@@ -207,10 +195,11 @@ const tasks = [
             const object = objectOfTasks[perentElementId]
             object.completed = false
             target.style = 'display:none'
+            perentElement.style = 'order:0'
         }
     }
 
-    // ! test, sort tasks 
+    // * sort object of tasks 
     function sortTasks(objectOfTasks, completed) {
         if (!completed) {
             return Object.values(objectOfTasks).filter(task => task.completed === false)
@@ -218,7 +207,7 @@ const tasks = [
         return Object.values(objectOfTasks).filter(task => task.completed === true)
     }
 
-    // * render unfinished tasks
+    // * nav buttonts container heandler  
     function onNavBtnClickHeandler({ target }) {
         const arrOfTaskSections = [...pageContainer.children]
 
