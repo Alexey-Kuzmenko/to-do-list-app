@@ -232,6 +232,9 @@ body {
 
   /* font style */
   color: white;
+
+  /* flex */
+  order: 1;
 }
 .completed {
   border: 1px solid var(--green);
@@ -385,9 +388,7 @@ body {
 @media (max-width: 430px) {
   * {
     transition: none;
-    transition-duration: none;
   }
-
   .page {
     padding-top: 100px;
     height: auto;

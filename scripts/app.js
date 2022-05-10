@@ -226,19 +226,20 @@ const tasks = [
             const arrOfCompletedTasks = sortTasks(objectOfTasks, true)
 
             arrOfCompletedTasks.map(task => task._id)
-                .forEach(ObjtaskId => {
-                    const section = arrOfTaskSections.find(section => section.dataset.taskId === ObjtaskId)
+                .forEach(objtaskId => {
+                    const section = arrOfTaskSections.find(section => section.dataset.taskId === objtaskId)
                     section.style = 'display:none'
                 }
                 )
         } else if (target.classList.contains('all-tasks')) {
-            arrOfTaskSections.forEach(section => {
-                if (section.style = 'display:none') {
-                    section.style = 'display:block'
-                    section.style = 'order: 1'
-                }
-            })
+            const arrOfCompletedTasks = sortTasks(objectOfTasks, true)
 
+            arrOfCompletedTasks.map(task => task._id)
+                .forEach(objtaskId => {
+                    const section = arrOfTaskSections.find(section => section.dataset.taskId === objtaskId)
+                    section.style = 'display:block'
+                    section.style = 'order: 2'
+                })
         }
     }
 
