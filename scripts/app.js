@@ -235,7 +235,7 @@ const tasks = [
             arrOfTaskSections.forEach(section => {
                 if (section.style = 'display:none') {
                     section.style = 'display:block'
-                    section.style = 'order:1'
+                    section.style = 'order: 1'
                 }
             })
 
