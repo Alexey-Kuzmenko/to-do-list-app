@@ -39,7 +39,7 @@ p {
 
 body {
   margin: 0;
-  /* font style */
+
   font-family: "Rubik", sans-serif;
   font-size: 1rem;
   line-height: 1.6rem;
@@ -47,10 +47,9 @@ body {
 
 /* * Page */
 .page {
-  /* size */
   width: 100%;
   min-height: 100vh;
-  /* background */
+
   background: var(--main-color);
 }
 
@@ -73,16 +72,12 @@ body {
 
 /* * Form */
 .form {
-  /* size */
-  /* form: 800px */
   width: 80%;
   padding: 30px 50px;
-  /* height: 400px; */
-  /* height: 50vh; */
-  /* border */
+
   border: 1px solid var(--yellow);
   border-radius: 48px;
-  /* flex */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,31 +86,27 @@ body {
 
 /* form-title */
 .form-title {
-  /* font-style */
+  margin-bottom: 20px;
+
   font-size: 2rem;
   font-weight: 500;
   color: white;
-  /* position */
-  margin-bottom: 20px;
 }
 
 /* form-input */
 .form-input {
-  /* main style */
-  /* width: 392px; */
   width: 49%;
   height: 48px;
   display: block;
-  /* margin: 10px 0; */
-  /* test */
+
   margin: 10px auto;
   margin: 10px 0;
   padding: 16px 24px;
   background-color: var(--main-color);
-  /* border style */
+
   border: 1px solid #3d4554;
   border-radius: 24px;
-  /* font style */
+
   font-family: "Rubik", sans-serif;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -139,18 +130,15 @@ body {
 
 /* btn */
 .btn {
-  /* size style */
   width: 49%;
   height: 48px;
   margin-top: 10px;
 
-  /* border & bg style */
   background: var(--yellow);
   outline: 1px solid var(--yellow);
   border-radius: 48px;
   border: none;
 
-  /* font style  */
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
@@ -163,17 +151,15 @@ body {
 
 /* * Navigation Buttons */
 .nav-btn-container {
-  /* size */
   width: 80%;
   min-height: 10vh;
   padding: 20px 30px;
   margin-top: 10px;
-  /* position */
+
   position: relative;
-  /* flex */
+
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   flex-flow: row wrap;
 }
 
@@ -181,18 +167,15 @@ body {
   width: 200px;
   height: 40px;
 
-  /* border & bg style */
   border-radius: 48px;
   border: none;
 
-  /* font style  */
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   color: #e0e0e0;
 
-  /* transition */
   transition-duration: 0.3s, 0.3s;
   transition-timing-function: ease-in;
 }
@@ -211,18 +194,16 @@ body {
   outline: 1px solid var(--orange);
 }
 
-/* * Tasks-list-section */
+/* * Tasks section */
 .tasks-section {
-  /* size */
   width: 80%;
   min-height: 20vh;
   margin-bottom: 40px;
   padding: 20px 30px;
-  /* border */
+
   border: 1px solid var(--yellow);
   border-radius: 48px;
 
-  /* font style */
   color: white;
 
   /* flex */
@@ -231,7 +212,6 @@ body {
 
 .completed {
   border: 1px solid var(--green);
-  /* text-decoration: line-through; */
   opacity: 0.7;
   transition: all 0.2s ease-in;
 }
@@ -253,25 +233,22 @@ body {
   text-align: justify;
 }
 
-/* tasks section button */
+/* tasks section buttons */
 .tasks-section-btn {
   width: 97px;
   height: 40px;
 
-  /* border & bg style */
   background: var(--red);
   outline: 1px solid var(--red);
   border-radius: 48px;
   border: none;
 
-  /* font style  */
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   color: #e0e0e0;
 
-  /* transition */
   transition-duration: 0.3s, 0.3s;
   transition-timing-function: ease-in;
 }
@@ -280,20 +257,17 @@ body {
   width: 97px;
   height: 40px;
 
-  /* border & bg style */
   background: var(--green);
   outline: 1px solid var(--green);
   border-radius: 48px;
   border: none;
 
-  /* font style  */
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   color: #e0e0e0;
 
-  /* transition */
   transition-duration: 0.3s, 0.3s;
   transition-timing-function: ease-in;
 }
@@ -308,20 +282,17 @@ body {
   height: 40px;
   display: none;
 
-  /* border & bg style */
   background-color: var(--grey);
   outline: 1px solid var(--grey);
   border-radius: 48px;
   border: none;
 
-  /* font style  */
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   color: #e0e0e0;
 
-  /* transition */
   transition-duration: 0.3s, 0.3s;
   transition-timing-function: ease-in;
 }
@@ -329,23 +300,18 @@ body {
 /* ! Media */
 
 /* breakpoints
+  1000px
+  700px
   600px
   500px
 */
-
-/* ! media request to height */
-@media (max-height: 700px) {
-  .tasks-section {
-    height: auto;
-  }
-}
 
 @media (min-width: 1000px) {
   /* * btn hover style */
   .btn:hover {
     background: var(--main-color);
     color: white;
-    /* transition */
+
     transition-property: background, color;
     transition-duration: 0.3s, 0.3s;
     transition-timing-function: ease-in;
@@ -363,10 +329,17 @@ body {
   .tasks-section-restore-btn:hover,
   .nav-btn:hover {
     background: var(--main-color);
-    /* transition */
+
     transition-property: background;
     transition-duration: 0.3s, 0.3s;
     transition-timing-function: ease-in;
+  }
+}
+
+/* ! media request to height */
+@media (max-height: 700px) {
+  .tasks-section {
+    height: auto;
   }
 }
 
@@ -408,7 +381,7 @@ body {
     height: auto;
   }
 
-  /* * fomr */
+  /* * form */
   .form {
     min-height: 35vh;
     padding: 20px 0;

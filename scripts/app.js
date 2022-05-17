@@ -50,6 +50,7 @@ const tasks = [
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler)
     pageContainer.addEventListener('click', onCompleteHeandler)
+    pageContainer.addEventListener('click', onDeleteHeandler)
     pageContainer.addEventListener('click', onRestoreHeandler)
     navContainer.addEventListener('click', onNavBtnClickHeandler)
 
@@ -140,12 +141,6 @@ const tasks = [
     }
 
     // * delete task
-    pageContainer.addEventListener('click', onDeleteHeandler, {
-        once: false,
-        capture: false,
-        passive: false,
-    })
-
     function deleteTask(id) {
         const taskTitle = objectOfTasks[id].title
         const isConfirm = confirm(`Are you sure you want to delete the task: ${taskTitle}`)
@@ -186,7 +181,7 @@ const tasks = [
         }
     }
 
-    // * cestore task 
+    // * restore task 
     function onRestoreHeandler({ target }) {
         if (target.classList.contains('tasks-section-restore-btn')) {
             const perentElement = target.closest('[data-task-id]')
