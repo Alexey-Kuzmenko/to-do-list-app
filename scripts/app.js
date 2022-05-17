@@ -39,12 +39,39 @@ const tasks = [
         return acc
     }, {})
 
+    const themes = {
+        default: {
+            '--main-color': '#20222a',
+            '--main-text-color': '#ffffff',
+            '--elements-color': '#f4c038',
+            '--section-btn-color': '#ed422b',
+            '--complete-btn-color': '#3cbf27',
+            '--all-tasks-btn-color': '#2da0e0',
+            '--unfinished-tasks-btn-color': '#f47523',
+            '--restore-btn-color': 'rgba(255, 255, 255, 0.5)',
+        },
+        light: {
+            '--main-color': '#ffffff',
+            '--main-text-color': '#425170',
+            '--elements-color': '#425170',
+            '--section-btn-color': '#ed422b',
+            '--complete-btn-color': '#3cbf27',
+            '--all-tasks-btn-color': '#2da0e0',
+            '--unfinished-tasks-btn-color': '#f47523',
+            '--btn-text-color': '#425170',
+            '--restore-btn-color': '#425170',
+        },
+    }
+
+    let lastSelectedTheme = 'default'
+
     // * UI elements
     const pageContainer = document.querySelectorAll('.flex-container')[1]
     const form = document.forms['form']
     const inputTitle = form.elements['title']
     const inputBody = form.elements['body']
     const navContainer = document.querySelector('.nav-btn-container')
+    const themeSelect = document.getElementById('themeSelect')
 
     // ! calling functions
     renderTasks(objectOfTasks)
@@ -52,6 +79,7 @@ const tasks = [
     pageContainer.addEventListener('click', onCompleteHeandler)
     pageContainer.addEventListener('click', onRestoreHeandler)
     navContainer.addEventListener('click', onNavBtnClickHeandler)
+    themeSelect.addEventListener('change', onThemeSelectHeandler)
 
     // * function wich render UI elements 
     function renderTasks(objOfTasks) {
@@ -230,6 +258,28 @@ const tasks = [
                     section.style = 'order: 2'
                 })
         }
+    }
+
+    // * theme select
+    function onThemeSelectHeandler(e) {
+        const selectedTheme = themeSelect.value
+        const isConfirm = confirm(`Do you want applay ${selectedTheme} color theme?`)
+        if (!isConfirm) {
+            themeSelect.value = lastSelectedTheme
+            return
+        }
+
+        setTheme(selectedTheme)
+        lastSelectedTheme = selectedTheme
+
+    }
+
+    function setTheme(name) {
+        const selectedThemeObject = themes[name]
+        Object.entries(selectedThemeObject).forEach(([key, value]) => {
+            console.log(key, value);
+            document.documentElement.style.setProperty(key, value)
+        })
     }
 
 })(tasks)
