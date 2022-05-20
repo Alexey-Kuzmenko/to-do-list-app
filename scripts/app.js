@@ -63,7 +63,7 @@ const tasks = [
         },
     }
 
-    let lastSelectedTheme = 'default'
+    let lastSelectedTheme = localStorage.getItem('appTheme') || 'default'
 
     // * UI elements
     const pageContainer = document.querySelectorAll('.flex-container')[1]
@@ -74,6 +74,7 @@ const tasks = [
     const themeSelect = document.getElementById('themeSelect')
 
     // ! calling functions
+    setTheme(lastSelectedTheme)
     renderTasks(objectOfTasks)
     form.addEventListener('submit', formSubmitActionHendler)
     pageContainer.addEventListener('click', onCompleteHeandler)
@@ -271,6 +272,7 @@ const tasks = [
 
         setTheme(selectedTheme)
         lastSelectedTheme = selectedTheme
+        localStorage.setItem('appTheme', selectedTheme)
 
     }
 
@@ -281,5 +283,7 @@ const tasks = [
             document.documentElement.style.setProperty(key, value)
         })
     }
+
+    themeSelect.value = lastSelectedTheme
 
 })(tasks)
